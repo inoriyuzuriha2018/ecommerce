@@ -35,7 +35,7 @@ class CheckoutsController < ApplicationController
       shipping_address_collection: { 
         allowed_countries: ['US', 'CA']
       }
-    )
+    ) 
 
     render json: { url: session.url }
   end

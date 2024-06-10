@@ -20,6 +20,15 @@
             <%= link_to cart_path, class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do %>
               <%= icon 'fa-solid', 'shopping-cart' %>
             <% end %>
+            <% if user_signed_in? %>
+              <%= link_to destroy_user_session_path,  data: { turbo_method: :delete } , class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do %>
+                <%= icon 'fa-solid', 'door-closed' %>
+              <% end %>    
+            <% else %>
+              <%= link_to new_user_session_path, class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do %>
+              <%= icon 'fa-solid', 'door-open' %>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>

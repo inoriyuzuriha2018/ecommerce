@@ -84,3 +84,5 @@ gem 'ruby-vips', '~> 2.1', '>= 2.1.4'
 gem 'mini_magick', '~> 4.12'
 
 gem "stripe", "~> 11.6"
+
+gem "pagy", "~> 6.5"
