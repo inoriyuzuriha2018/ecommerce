@@ -1,10 +1,10 @@
 class CreateAdminProducts < ActiveRecord::Migration[7.1]
   def change
     create_table :products do |t|
-      t.string :name
+      t.string :name, limit: 191
       t.text :description
-      t.string :price
-      t.string :integer
+      t.string :price, limit: 191
+      t.string :integer, limit: 191
       t.references :category, null: false, foreign_key: true
       t.boolean :active
 

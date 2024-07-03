@@ -14,9 +14,18 @@ threads min_threads_count, max_threads_count
 # Specifies that the worker count should equal the number of processors in production.
 if ENV["RAILS_ENV"] == "production"
   require "concurrent-ruby"
+  localhost_key = "#{File.join('config', 'cert', 'localhost-key.pem')}"
+  localhost_crt = "#{File.join('config', 'cert', 'localhost.pem')}"
+  # To be able to use rake etc
+  ssl_bind '0.0.0.0', 3001, {
+    key: localhost_key,
+    cert: localhost_crt,
+    verify_mode: 'none'
+  }
   worker_count = Integer(ENV.fetch("WEB_CONCURRENCY") { Concurrent.physical_processor_count })
   workers worker_count if worker_count > 1
 end
+
 
 # Specifies the `worker_timeout` threshold that Puma will use to wait before
 # terminating a worker in development environments.
