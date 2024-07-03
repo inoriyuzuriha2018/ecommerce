@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+
   namespace :admin do
     resources :orders
     resources :stocks
@@ -13,8 +13,9 @@ Rails.application.routes.draw do
     sessions: 'admin/sessions'
   }
 
-  devise_for :users, as: "users" ,controllers: {
-    sessions: 'users/sessions'
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
   }
 
   

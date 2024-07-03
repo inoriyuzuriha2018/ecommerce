@@ -17,6 +17,18 @@ Rails.application.configure do
   # Enable server timing
   config.server_timing = true
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.smtp_settings = {
+    user_name:      Rails.application.credentials.dig(:email, :name),
+    password:       Rails.application.credentials.dig(:email, :password),
+    domain:        'mail.google.com',
+    address:       'smtp.gmail.com',
+    port:          '587',
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
 
 
 
@@ -76,4 +88,6 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
+
+  config.hosts << "dung-inspiron-7559:3000"
 end
